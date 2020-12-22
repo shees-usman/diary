@@ -1,0 +1,27 @@
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.datepicker {
+  font-size: 18px;
+  text-align: center;
+}
+
+.toolbar-content {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.vs-viewport {
+  height: 100%;
+}
+
+.empty-pane {
+  word-break: break-word;
+  max-width: 100%;
+  margin: 100px;
+}

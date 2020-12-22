@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>Add Note</h2>
+<mat-dialog-content class="mat-typography">
+  <div [formGroup]="noteForm">
+    <div class="d-flex title-group">
+      <mat-form-field appearance="fill">
+        <input matInput placeholder="Title" formControlName="title" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <input matInput placeholder="Time" formControlName="time" />
+      </mat-form-field>
+    </div>
+    <mat-form-field appearance="fill" class="desc-text">
+      <textarea matInput placeholder="Whats on your mind? (500 chars max)" formControlName="desc"></textarea>
+    </mat-form-field>
+    <ng-container formArrayName="attachments">
+      <div *ngFor="let _attachment of attachments.controls; index as i">
+        <div [formGroupName]="i" class="d-flex attachment-container">
+          <mat-form-field appearance="fill">
+            <mat-select formControlName="type" value="url" #typeSelector>
+              <mat-option  value="url">url</mat-option>
+              <mat-option  value="img">img</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="flex-basis-50">
+            <input matInput placeholder="Description (100 chars max)" formControlName="desc" />
+          </mat-form-field>
+          <mat-form-field appearance="fill" *ngIf="typeSelector.value === 'url'; else fileInput">
+            <input matInput type="url" placeholder="http://some.example.com" formControlName="value"/>
+          </mat-form-field>
+          <ng-template #fileInput>
+            <input type="file" accept="image/*"  (change)="fileChanged($event, attachments.controls[i].get('value'))"/>
+          </ng-template>
+        </div>
+      </div>
+    </ng-container>
+    <button mat-button (click)="addAttachment()">Add Attachment</button>
+
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="saveNote()" [disabled]="this.noteForm.invalid">Save</button>
+</mat-dialog-actions>

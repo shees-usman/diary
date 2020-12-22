@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+  <button
+    type="button"
+    aria-label="Toggle sidenav"
+    mat-icon-button
+    (click)="toggleDrawer()">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+  <div class="toolbar-content">
+    <span>Whats going?</span>
+    <mat-form-field class="datepicker" appearance="fill">
+      <input matInput [matDatepicker]="picker" [formControl]="selectedDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #picker></mat-datepicker>
+    </mat-form-field>
+    <button mat-flat-button color="accent" (click)="addNote()">Add Note</button>
+  </div>
+</mat-toolbar>
+
+<ng-container *ngIf="((selectedDateNotes$ | async) || []).length > 0; else noEntriesForDate">
+  <cdk-virtual-scroll-viewport itemSize="50" class="vs-viewport">
+    <app-notes-list *cdkVirtualFor="let note of (selectedDateNotes$ | async)" [note]="note"></app-notes-list>
+  </cdk-virtual-scroll-viewport>
+</ng-container>
+<ng-template #noEntriesForDate>
+  <div class="empty-pane">
+    <h2>
+      Woah! It seems like you dont have any notes for this date. To add some notes select the date and click on add note.
+      As soon as you add them they should appear here!
+    </h2>
+  </div>
+</ng-template>

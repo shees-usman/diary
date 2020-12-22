@@ -1,1 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/**
+Layout Utilities
+ */
+
+// Flexbox Layout
+@each $display in (block, inline-block, flex, none) {
+  .d-#{$display} {
+    display: $display !important;
+  }
+}
+
+@each $direction in (row, column) {
+  .flex-#{$direction} {
+    flex-direction: $direction !important;
+  }
+}
+
+@each $percentage in (100, 75, 50, 25) {
+  .flex-basis-#{$percentage} {
+    flex-basis: percentage($percentage / 100) !important;
+  }
+}
+
+@each $wrapVariant in (nowrap, wrap, wrap-reverse) {
+  .flex-#{$wrapVariant} {
+    flex-wrap: $wrapVariant;
+  }
+}
+
+// Custom classes
+.add-note-dialog-panel {
+  min-width: 80vw !important;
+  min-height: 80vh;
+}
+
+app-home {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}

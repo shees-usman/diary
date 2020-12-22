@@ -1,0 +1,31 @@
+<mat-accordion *ngIf="note">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ note.title }}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{ note.timestamp }}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+      <p>{{ note.desc }}</p>
+      <ul>
+        <li *ngFor="let attachment of note.attachments" [class.thumbnail-container]="attachment.type === 'img'">
+          <ng-container *ngIf="attachment.type === 'img' else showLink">
+            {{ attachment.desc }}
+            <img src="{{attachment.value}}" alt="{{ attachment.desc }}" class="thumbnail">
+          </ng-container>
+          <ng-template #showLink>
+            <a [href]="attachment.value" target="_blank">
+              {{ attachment.desc }}
+            </a>
+          </ng-template>
+        </li>
+      </ul>
+      <mat-action-row>
+        <button mat-button color="warn" (click)="deleteNote()">Delete</button>
+      </mat-action-row>
+    </ng-template>
+  </mat-expansion-panel>
+</mat-accordion>
