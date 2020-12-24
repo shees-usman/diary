@@ -15,10 +15,12 @@ export function diaryDateReducer(state = initialState, action: any): DiaryDate {
       };
 
     case REMOVE_NOTE_FROM_DATE: {
+      // Get date from note id as noteId is timestamp of note
       const date = action.noteId.split(' ')[0];
       const tempRemovedItem = state[date].filter(item => item !== action.noteId);
-      const stateClone = { ...state };
-      if (tempRemovedItem.length <= 0) {
+      const stateClone = { ...state }; // since state is immutable delete wouldnt work with state itself
+      // so copying to overcome that problem
+      if (tempRemovedItem.length <= 0) { // If no remaining notes for a date remove date from store
         delete stateClone[date];
       } else {
         stateClone[date] = [ ...tempRemovedItem ];

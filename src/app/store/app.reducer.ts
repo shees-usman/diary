@@ -2,8 +2,9 @@
  * Root level reducer to map
  * individual reducers to object
  */
+// Store Imports
 import { ActionReducerMap } from '@ngrx/store';
-
+// Interfaces Imports
 import {notesReducer, NoteState} from './note.reducer';
 import {View} from '../models/view.interface';
 import {viewReducer} from './view.reducer';

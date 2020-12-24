@@ -1,5 +1,7 @@
+// Store Import
 import {Action} from '@ngrx/store';
 
+// Define Action Identifiers
 export const ADD_NOTE_TO_DATE = '[DATE] Add Note To Date';
 export const REMOVE_NOTE_FROM_DATE = '[DATE] Remove Note From Date';
 export const REMOVE_DATE = '[DATE] Remove Date';

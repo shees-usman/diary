@@ -1,3 +1,4 @@
+// Interface for Note
 export interface Note {
   title: string;
   timestamp: string;
@@ -9,6 +10,7 @@ export interface Note {
   }>;
 }
 
+// Default initializer to create a default Note with empty values
 export const defaultNote = (): Note => ({
   title: '',
   timestamp: '',

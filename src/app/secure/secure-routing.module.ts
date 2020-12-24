@@ -1,9 +1,12 @@
+// Angular Imports
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { CommonModule } from '@angular/common';
-import {SecureComponent} from './secure.component';
+// Component Imports
+import { HomeComponent } from './home/home.component';
+import { SecureComponent } from './secure.component';
 
+// Defining routes
 const routes: Routes = [
   {
     path: '',
@@ -12,7 +15,7 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'home'//uiRoutes.secure.home
+        redirectTo: 'home'
       },
       {
         path: 'home',

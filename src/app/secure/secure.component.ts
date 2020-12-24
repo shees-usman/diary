@@ -1,8 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {select, Store} from '@ngrx/store';
-import {State} from '../store/app.reducer';
-import {getDrawerOpenState} from '../store/view.reducer';
-import {takeUntil} from 'rxjs/operators';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { State } from '../store/app.reducer';
+import { getDrawerOpenState } from '../store/view.reducer';
 import {Subject} from 'rxjs';
 import {SetDrawer, ToggleDrawer} from '../store/view.actions';
 
@@ -11,20 +10,23 @@ import {SetDrawer, ToggleDrawer} from '../store/view.actions';
   templateUrl: './secure.component.html',
   styleUrls: ['./secure.component.scss']
 })
-export class SecureComponent implements OnInit, OnDestroy {
+export class SecureComponent {
 
-  ngUnsubscribe$: Subject<boolean> = new Subject<boolean>();
+  // Drawer state watcher
   drawerState$ = this.store.pipe(select(getDrawerOpenState));
+
   constructor(private store: Store<State>) { }
 
-  ngOnInit(): void {
-
-  }
-
+  /**
+   * Close the drawer
+   */
   closeDrawer() {
     this.store.dispatch(new SetDrawer(false));
   }
 
+  /**
+   * Export all store data as JSON
+   */
   exportAsJson() {
     const dataStr = 'data:text/json;charset=utf-8,' +
       encodeURIComponent('{ "notes": ' +
@@ -36,11 +38,6 @@ export class SecureComponent implements OnInit, OnDestroy {
     document.body.appendChild(downloadAnchorNode);
     downloadAnchorNode.click();
     downloadAnchorNode.remove();
-  }
-
-  ngOnDestroy(): void {
-    this.ngUnsubscribe$.next(true);
-    this.ngUnsubscribe$.complete();
   }
 
 }

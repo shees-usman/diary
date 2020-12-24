@@ -8,9 +8,7 @@ import {
 } from './note.actions';
 import {Note} from '../models/note.interface';
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {View} from '../models/view.interface';
-import {getDrawerOpen} from './view.reducer';
-import {getDiaryDateById, getDiaryDateState} from './diaryDate.reducer';
+import {getDiaryDateState} from './diaryDate.reducer';
 import {DiaryDate} from '../models/diaryDate.interface';
 
 

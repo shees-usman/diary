@@ -13,7 +13,9 @@ export class NoteEffects {
   constructor(private actions$: Actions, private store: Store<State>) {
   }
 
-  // Listen for the add note action
+  /**
+   * Effect to add note to date each time note is added to store
+   */
   @Effect()
   add$ = this.actions$.pipe(
     ofType(ADD_NOTE),
@@ -22,7 +24,9 @@ export class NoteEffects {
     })
   );
 
-  // Listen for the add note action
+  /**
+   * Effect to remove noteid from date once removed from store
+   */
   @Effect()
   remove$ = this.actions$.pipe(
     ofType(REMOVE_NOTE),
